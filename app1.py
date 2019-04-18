@@ -1,11 +1,12 @@
-from flask import Flask, render_template,Response
+from flask import Flask, render_template,Response #  for creating server camera
 import cv2
 from keras.models import load_model
 import tensorflow as tf
 model = load_model('criminal_detection.h5') 
 labels = ['subject01','subject02',"subject03","unknown"]
 fd = cv2.CascadeClassifier(r"haarcascade_frontalface_alt.xml")
-graph = tf.get_default_graph()
+graph = tf.get_default_graph() # to make the model working in flask
+
 def get_face(img):
     corners = fd.detectMultiScale(img,1.3,4)
     if len(corners)==0:
