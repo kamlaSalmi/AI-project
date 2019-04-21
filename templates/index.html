@@ -1,13 +1,24 @@
 
 <!DOCTYPE html>
 <html>
+<style type="text/css">
+
+#example { width: 100%; }
+
+iframe {
+width: 600px;
+height: 400px;
+}
+
+#example1 { float: left; }
+#example2 { float: right; }
+
+</style>
 <body>
     <center>    <h3> Welcome to OpenCV Application</h3> </center>
 <br><br><div>
-    <div style="padding-left:10px;float: left;">
-        <iframe width="600" height="400" src="/video_feed"></iframe></div>
-    <div style="padding-left:700px;float: left;">
-    <iframe width="600" height="400" src="/video_feed">
+        <iframe  src="/video_feed" id="example1"></iframe>
+    <iframe src="http://172.20.10.8:5000/video_feed" id="example1"> 
   <p>Your browser does not support iframes.</p>
 </iframe>
     </div>

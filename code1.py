@@ -77,19 +77,25 @@ backend.set_image_data_format("channels_first")
 
 model = models.Sequential()
 
+# first convolutional layer
 model.add(layers.Conv2D(filters=20,kernel_size=(5,5),activation='relu',
                        input_shape=(1,100,100)))
+# maxpooling layer
 model.add(layers.MaxPooling2D(pool_size=(2,2)))
-
+# second convolutional layer
 model.add(layers.Conv2D(filters=40,kernel_size=(5,5),activation='relu'))
+# maxpooling layer
 model.add(layers.MaxPooling2D(pool_size=(2,2)))
-
+# add a flatten layer
 model.add(layers.Flatten())
+# hidden layer
 model.add(layers.Dense(80,activation='relu'))
+#add the output layer
 model.add(layers.Dense(4,activation='sigmoid'))# 4 labels
 
 model.compile(loss='categorical_crossentropy',metrics=['accuracy'],
              optimizer='adam')
+# train the model
 model.fit(trainimg,trainlb,batch_size=None,epochs=10,verbose=True)
 
 

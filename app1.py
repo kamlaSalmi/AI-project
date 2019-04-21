@@ -16,7 +16,7 @@ def get_face(img):
         img = img[x:x+h,y:y+w] # cropping the image
         img = cv2.resize(img,(100,100))
     return (x,y,w,h),img
-    
+# getting the image     
 def img_prde (img):
     global graph
     img2 = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -24,7 +24,7 @@ def img_prde (img):
     if corner!=None:
         (x,y,w,h)=corner
         with graph.as_default():
-            output = model.predict(img2.reshape(1,1,100,100))
+            output = model.predict(img2.reshape(1,1,100,100))# using the model to predict the out put of the image
         person = labels[int(output[0][0])]
         if person!="unknown":
             cv2.putText(img,person,(x,y),cv2.FONT_HERSHEY_COMPLEX,1.0,(0,0,255),2)
@@ -36,7 +36,7 @@ def img_prde (img):
 
 app=Flask(__name__)
 
-@app.route('/')
+@app.route('/') # running the server camera on the browser
 def index():
     return render_template("index.html")
 
