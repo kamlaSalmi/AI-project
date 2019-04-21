@@ -2,8 +2,11 @@ from flask import Flask, render_template,Response #  for creating server camera
 import cv2
 from keras.models import load_model
 import tensorflow as tf
+import time
+import pandas
+
 model = load_model('criminal_detection.h5') 
-labels = ['subject01','subject02',"subject03","unknown"]
+labels = ['criminal-2','criminal-2',"criminal-3","unknown"]
 fd = cv2.CascadeClassifier(r"haarcascade_frontalface_alt.xml")
 graph = tf.get_default_graph() # to make the model working in flask
 
@@ -56,4 +59,14 @@ def video_feed():
 
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0")
+    
+prediction_cols=["criminal" , times]
+df = pandas.Dataframe(columns=lst)
+data={"criminal":[],"times":[]}
+label= ["name"]
+data ["criminal"].append(label)
+data["time"].append(time.time)
+df2 = pandas.Dataframe(data)
+df2.to_csv("data.csv")
+print (df2)
     
