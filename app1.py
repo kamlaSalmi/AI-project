@@ -30,6 +30,13 @@ def img_prde (img):
             output = model.predict(img2.reshape(1,1,100,100))# using the model to predict the out put of the image
         person = labels[int(output[0][0])]
         if person!="unknown":
+            dictionary={"criminal":[],"times":[]}
+            dictionary ["criminal"].append(person)
+            dictionary["times"].append(time.ctime())
+            df1 = pandas.read_csv(r"Data.csv")
+            df2 = pandas.DataFrame(dictionary)
+            df = pandas.concat([df1,df2])
+            df.to_csv("Data.csv",index=False)
             cv2.putText(img,person,(x,y),cv2.FONT_HERSHEY_COMPLEX,1.0,(0,0,255),2)
         cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,255),3)
     return img
@@ -60,13 +67,5 @@ def video_feed():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0")
     
-prediction_cols=["criminal" , times]
-df = pandas.Dataframe(columns=lst)
-data={"criminal":[],"times":[]}
-label= ["name"]
-data ["criminal"].append(label)
-data["time"].append(time.time)
-df2 = pandas.Dataframe(data)
-df2.to_csv("data.csv")
-print (df2)
-    
+
+
