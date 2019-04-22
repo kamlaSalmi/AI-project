@@ -23,5 +23,5 @@ In this code we created a server camera using Flask package,  and used the code 
 Index.html:
 In this file we create the web server by using Flask package to open the camera and detect the criminal faces and apply a code to open different cameras of different devices in same page. 
 
-Here is the result of running the code above and using as input the video stream of a build-in webcam:
+
 
